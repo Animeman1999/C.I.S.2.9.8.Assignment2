@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">CIS298Assignment2</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="convert_prompt">Convert:</string>
     <string name="action_settings">Settings</string>
+    <string name="left_radial_group_text">FROM</string>
+    <string name="right_radial_group_text">TO</string>
+    <string name="radio_button_1_5">Celsius</string>
+    <string name="radio_button_2_6">Fahrenheit</string>
+    <string name="radio_button_3_7">Kelvin</string>
+    <string name="radio_button_4_8">Rankin</string>
+    <string name="convert_button">CONVERT</string>
+    <string name="answer_formula">Enter a value and select Units to be converted from and to.</string>
+
 </resources>
