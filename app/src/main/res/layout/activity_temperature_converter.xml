@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:text="@string/convert_button"
-        android:id="@+id/button"
+        android:id="@+id/convertButton"
         />
 
     <TextView
@@ -135,7 +135,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/answer_formula"
         android:id="@+id/textView4"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/convertButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp" />
 </LinearLayout>
