@@ -12,6 +12,6 @@
     <string name="convert_button">CONVERT</string>
     <string name="answer_formula">Enter a value and select Units to be converted from and to.</string>
     <string name="no_tempature_error_toast">You must enter a tempature first!</string>
-    <string name="no_from_errore_toast">You must select what the tempature scale you entered is! </string>
+    <string name="no_from_error_toast">You must select what the tempature scale you entered is! </string>
     <string name="no_to_error_toast">You must select what tempature scale you want to convert to!</string>
 </resources>

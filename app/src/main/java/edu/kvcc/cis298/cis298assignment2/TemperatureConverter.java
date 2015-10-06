@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class TemperatureConverter extends AppCompatActivity {
@@ -24,7 +25,8 @@ public class TemperatureConverter extends AppCompatActivity {
     private RadioButton mToChoice7;
     private RadioButton mToChoice8;
 
-
+    private RadioGroup mFromGroup;
+    private RadioGroup mToGroup;
 
 
     @Override
@@ -33,6 +35,8 @@ public class TemperatureConverter extends AppCompatActivity {
         setContentView(R.layout.activity_temperature_converter);
 
 
+        mFromGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        mToGroup = (RadioGroup)findViewById(R.id.radioGroup2);
 
 
         mFromChoice1 = (RadioButton) findViewById(R.id.radioButton);
@@ -51,10 +55,27 @@ public class TemperatureConverter extends AppCompatActivity {
             public void onClick(View view) {
 
                 String tempatureString = ((EditText) findViewById(R.id.editText)).getText().toString();
-
+                String testString;
 
                 if (tempatureString != null && !tempatureString.isEmpty()){// MAKE SURE THAT A TEMPERATURE HAS BEEN ENTERED
+                    int mSelectedFrom = mFromGroup.getCheckedRadioButtonId();
+                    testString = String.valueOf(mSelectedFrom);
+                   // Toast.makeText(TemperatureConverter.this,testString, Toast.LENGTH_SHORT).show();
+                    if (mSelectedFrom > 0){ // MAKE SURE THAT A FROM TEMPERATURE SCALE HAS BEEN SELECTED
+                        int mSelectedTo = mToGroup.getCheckedRadioButtonId();
 
+                        if (mSelectedTo > 0){ // MAKE SURE THAT A TO TEMPERATURE SCALE HAS BEEN SELECTED
+                            
+                        }
+                        else {
+                            //                                                      ERROR MESSAGE WHEN A to TERMPERATURE SCALE HAS NOT BEE SELECTED
+                            Toast.makeText(TemperatureConverter.this,R.string.no_to_error_toast, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else {
+                        //                                                      ERROR MESSAGE WHEN A FROM TERMPERATURE SCALE HAS NOT BEE SELECTED
+                        Toast.makeText(TemperatureConverter.this,R.string.no_from_error_toast, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     //                                                          ERROR MESSAGE WHEN TEMPERATURE HAS NOT BEEN ENTERED
