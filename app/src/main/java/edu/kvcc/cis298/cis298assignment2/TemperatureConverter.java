@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TemperatureConverter extends AppCompatActivity {
@@ -46,8 +47,10 @@ public class TemperatureConverter extends AppCompatActivity {
 
         mToChoice5 = (RadioButton) findViewById(R.id.radioButton5);
         mToChoice6 = (RadioButton) findViewById(R.id.radioButton6);
-        mToChoice6 = (RadioButton) findViewById(R.id.radioButton7);
-        mToChoice7 = (RadioButton) findViewById(R.id.radioButton8);
+        mToChoice7 = (RadioButton) findViewById(R.id.radioButton7);
+        mToChoice8 = (RadioButton) findViewById(R.id.radioButton8);
+
+
 
         mConvertButton = (Button) findViewById(R.id.convertButton);
         mConvertButton.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +58,15 @@ public class TemperatureConverter extends AppCompatActivity {
             public void onClick(View view) {
 
                 String tempatureString = ((EditText) findViewById(R.id.editText)).getText().toString();
+                int mFormulaNumberSelected = 0;
                 String testString;
+                double temperature;
+                int mRoundingInt;
+                double mRoundedDouble;
+                TextView mTextView;
 
                 if (tempatureString != null && !tempatureString.isEmpty()){// MAKE SURE THAT A TEMPERATURE HAS BEEN ENTERED
+                    temperature = Double.parseDouble(tempatureString);
                     int mSelectedFrom = mFromGroup.getCheckedRadioButtonId();
                     testString = String.valueOf(mSelectedFrom);
                    // Toast.makeText(TemperatureConverter.this,testString, Toast.LENGTH_SHORT).show();
@@ -65,9 +74,140 @@ public class TemperatureConverter extends AppCompatActivity {
                         int mSelectedTo = mToGroup.getCheckedRadioButtonId();
 
                         if (mSelectedTo > 0){ // MAKE SURE THAT A TO TEMPERATURE SCALE HAS BEEN SELECTED
-                            
-                        }
-                        else {
+
+                            //**********************************FROM CELCIUS*********************************************
+                            if (mFromChoice1.getId() == mSelectedFrom){
+                               if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS
+                                   Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
+                               }
+                                else
+                               {
+                                   if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 0
+                                       mFormulaNumberSelected = 0;
+                                   }
+                                   else
+                                   {
+                                       if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 1
+                                           mFormulaNumberSelected = 1;
+                                       }
+                                       else
+                                       {
+                                           //TO RANKIN 2
+                                           mFormulaNumberSelected = 2;
+
+                                       }
+
+                                   }
+                               }
+
+                               }
+                            //********************************END FROM CELCIUS**********************************************
+
+                            //************************************FROM FARHENHEIT*******************************************
+                            if (mFromChoice2.getId() == mSelectedFrom){// FROM FARHENHEIT
+                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 3
+                                    mFormulaNumberSelected = 3;
+                                }
+                                else
+                                {
+                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT
+                                        Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 4
+                                            mFormulaNumberSelected =4;
+                                        }
+                                        else
+                                        {
+                                            //TO RANKIN 5
+                                            mFormulaNumberSelected =5;
+
+
+                                        }
+
+
+                                    }
+                                }
+
+
+
+                            }
+                            //********************************END FROM FARHENHEIT*******************************************
+
+                            //***********************************FROM KELVIN***********************************************
+                            if (mFromChoice3.getId() == mSelectedFrom){
+                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 6
+                                    mFormulaNumberSelected =6;
+                                }
+                                else
+                                {
+                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 7
+                                        mFormulaNumberSelected =7;
+                                    }
+                                    else
+                                    {
+                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN
+                                            Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
+                                        }
+                                        else
+                                        {
+                                            //TO RANKIN 8
+                                            mFormulaNumberSelected = 8;
+
+                                        }
+
+
+                                    }
+                                }
+
+                            }
+                            //********************************END FROM KELVIN***********************************************
+
+                            //**********************************FROM RANKIN*************************************************
+                            if (mFromChoice4.getId() == mSelectedFrom){
+                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 9
+                                    mFormulaNumberSelected = 9;
+                                }
+                                else
+                                {
+                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 10
+                                        mFormulaNumberSelected =10;
+                                    }
+                                    else
+                                    {
+                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 11
+                                            mFormulaNumberSelected = 11;
+                                        }
+                                        else
+                                        {
+                                            //TO RANKIN
+                                            Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
+
+                                        }
+
+
+                                    }
+                                }
+
+                            }
+
+                            //********************************END FROM RANKIN*************************************************
+                            TempConversion AnotherTempConversion= new TempConversion(temperature, mFormulaNumberSelected);  // DO THE CONVERSION
+
+                            mRoundingInt = (int)(AnotherTempConversion.getOutputTemperature()* 10);                         // ROUND TO THE NEAREST 10TH
+                            mRoundedDouble = (double) (mRoundingInt) / 10;
+
+                            mTextView = (TextView) findViewById(R.id.textView4);
+                            mTextView.setText(String.valueOf(mRoundedDouble) + AnotherTempConversion.getOutputData());
+
+
+                            Toast.makeText(TemperatureConverter.this,AnotherTempConversion.getOutputData() , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TemperatureConverter.this,String.valueOf(mRoundedDouble) , Toast.LENGTH_SHORT).show();
+
+
+
+                        } else {
                             //                                                      ERROR MESSAGE WHEN A to TERMPERATURE SCALE HAS NOT BEE SELECTED
                             Toast.makeText(TemperatureConverter.this,R.string.no_to_error_toast, Toast.LENGTH_SHORT).show();
                         }
