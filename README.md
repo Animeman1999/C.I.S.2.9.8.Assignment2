@@ -1,6 +1,6 @@
 # Assignment 2 - Temperature Converter
 
-## Author
+## Author Jeffrey Martin
 
 ## Description
 
@@ -26,7 +26,10 @@ Solution Requirements:
 The book does not cover how to do work with Radio Buttons. I will talk about it as needed in class. If you are stuck or have questions about it, ask.
 
 ## Outside Resources Used
+http://www.csgnetwork.com/   for formulas
+http://stackoverflow.com/    for androind/java help
+
 
 ## Known Problems, Issues, And/Or Errors in the Program
-
+ugly.
 

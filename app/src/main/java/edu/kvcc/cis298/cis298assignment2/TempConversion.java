@@ -18,7 +18,7 @@ public class TempConversion {
             "K = (°F + 459.67) / 1.8",
             "Ra = °F + 459.67",
             "C = K − 273.15",
-            "°F = K × 1.8 − 459.67",
+            "°F = (K  − 273.15) × 1.8 + 32",
             "°Ra = K × 1.8",
             "°C = °Ra / 1.8 - 273.15",
             "°F = °Ra - 459.67",
@@ -56,7 +56,7 @@ public class TempConversion {
                 mOutputTemperature = (mInputTemperature - 273.15);
                 break;
             case 7:
-                mOutputTemperature = (mInputTemperature * 1.8 -0273.15);
+                mOutputTemperature = (mInputTemperature  - 273.15) * 1.8 + 32;
                 break;
             case 8:
                 mOutputTemperature = (mInputTemperature *1.8);

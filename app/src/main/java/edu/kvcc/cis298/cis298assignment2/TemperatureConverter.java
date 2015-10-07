@@ -2,6 +2,7 @@ package edu.kvcc.cis298.cis298assignment2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ public class TemperatureConverter extends AppCompatActivity {
     private RadioGroup mFromGroup;
     private RadioGroup mToGroup;
 
+    private static final String KEY_INDEX ="index";/////////////////////
+    private int mCurrentIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,8 @@ public class TemperatureConverter extends AppCompatActivity {
         mToChoice7 = (RadioButton) findViewById(R.id.radioButton7);
         mToChoice8 = (RadioButton) findViewById(R.id.radioButton8);
 
-
-
         mConvertButton = (Button) findViewById(R.id.convertButton);
+
         mConvertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,8 +72,7 @@ public class TemperatureConverter extends AppCompatActivity {
                 if (tempatureString != null && !tempatureString.isEmpty()){// MAKE SURE THAT A TEMPERATURE HAS BEEN ENTERED
                     temperature = Double.parseDouble(tempatureString);
                     int mSelectedFrom = mFromGroup.getCheckedRadioButtonId();
-                    testString = String.valueOf(mSelectedFrom);
-                   // Toast.makeText(TemperatureConverter.this,testString, Toast.LENGTH_SHORT).show();
+
                     if (mSelectedFrom > 0){ // MAKE SURE THAT A FROM TEMPERATURE SCALE HAS BEEN SELECTED
                         int mSelectedTo = mToGroup.getCheckedRadioButtonId();
 
@@ -96,16 +97,12 @@ public class TemperatureConverter extends AppCompatActivity {
                                            mToType = "K";
                                        }
                                        else
-                                       {
-                                           //TO RANKIN 2
+                                       {//TO RANKIN 2
                                            mFormulaNumberSelected = 2;
                                            mToType ="°Ra";
-
                                        }
-
                                    }
                                }
-
                                }
                             //********************************END FROM CELCIUS**********************************************
 
@@ -128,19 +125,12 @@ public class TemperatureConverter extends AppCompatActivity {
                                             mToType = "K";
                                         }
                                         else
-                                        {
-                                            //TO RANKIN 5
+                                        {//TO RANKIN 5
                                             mFormulaNumberSelected =5;
                                             mToType ="°Ra";
-
                                         }
-
-
                                     }
                                 }
-
-
-
                             }
                             //********************************END FROM FARHENHEIT*******************************************
 
@@ -168,11 +158,8 @@ public class TemperatureConverter extends AppCompatActivity {
                                             mFormulaNumberSelected = 8;
                                             mToType ="°Ra";
                                         }
-
-
                                     }
                                 }
-
                             }
                             //********************************END FROM KELVIN***********************************************
 
@@ -196,16 +183,11 @@ public class TemperatureConverter extends AppCompatActivity {
                                             mToType = "K";
                                         }
                                         else
-                                        {
-                                            //TO RANKIN
+                                        {//TO RANKIN
                                             Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
-
                                         }
-
-
                                     }
                                 }
-
                             }
 
                             //********************************END FROM RANKIN*************************************************
@@ -216,9 +198,6 @@ public class TemperatureConverter extends AppCompatActivity {
 
                               mTextView = (TextView) findViewById(R.id.textView4);
                               mTextView.setText(String.valueOf(temperature) + mFromType + " = " + String.valueOf(mRoundedDouble) + mToType + System.getProperty("line.separator")+ AnotherTempConversion.getOutputData());
-
-
-
                         } else {
                             //                                                      ERROR MESSAGE WHEN A to TERMPERATURE SCALE HAS NOT BEE SELECTED
                             Toast.makeText(TemperatureConverter.this,R.string.no_to_error_toast, Toast.LENGTH_SHORT).show();
@@ -235,10 +214,18 @@ public class TemperatureConverter extends AppCompatActivity {
                 }
 
             }
+
+
         });
 
 
+
+    if (savedInstanceState != null){
+        mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
     }
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
