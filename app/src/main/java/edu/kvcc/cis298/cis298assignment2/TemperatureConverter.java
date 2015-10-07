@@ -64,6 +64,8 @@ public class TemperatureConverter extends AppCompatActivity {
                 int mRoundingInt;
                 double mRoundedDouble;
                 TextView mTextView;
+                String mFromType = "-";
+                String mToType = "-";
 
                 if (tempatureString != null && !tempatureString.isEmpty()){// MAKE SURE THAT A TEMPERATURE HAS BEEN ENTERED
                     temperature = Double.parseDouble(tempatureString);
@@ -77,6 +79,7 @@ public class TemperatureConverter extends AppCompatActivity {
 
                             //**********************************FROM CELCIUS*********************************************
                             if (mFromChoice1.getId() == mSelectedFrom){
+                                mFromType = "°C"; //                        FOR OUTPUT
                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS
                                    Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
                                }
@@ -84,16 +87,19 @@ public class TemperatureConverter extends AppCompatActivity {
                                {
                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 0
                                        mFormulaNumberSelected = 0;
+                                       mToType = "°F";
                                    }
                                    else
                                    {
                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 1
                                            mFormulaNumberSelected = 1;
+                                           mToType = "K";
                                        }
                                        else
                                        {
                                            //TO RANKIN 2
                                            mFormulaNumberSelected = 2;
+                                           mToType ="°Ra";
 
                                        }
 
@@ -105,8 +111,10 @@ public class TemperatureConverter extends AppCompatActivity {
 
                             //************************************FROM FARHENHEIT*******************************************
                             if (mFromChoice2.getId() == mSelectedFrom){// FROM FARHENHEIT
+                                mFromType = "°F";
                                 if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 3
                                     mFormulaNumberSelected = 3;
+                                    mToType = "°C";
                                 }
                                 else
                                 {
@@ -117,12 +125,13 @@ public class TemperatureConverter extends AppCompatActivity {
                                     {
                                         if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 4
                                             mFormulaNumberSelected =4;
+                                            mToType = "K";
                                         }
                                         else
                                         {
                                             //TO RANKIN 5
                                             mFormulaNumberSelected =5;
-
+                                            mToType ="°Ra";
 
                                         }
 
@@ -137,13 +146,16 @@ public class TemperatureConverter extends AppCompatActivity {
 
                             //***********************************FROM KELVIN***********************************************
                             if (mFromChoice3.getId() == mSelectedFrom){
+                                mFromType = "K";
                                 if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 6
                                     mFormulaNumberSelected =6;
+                                    mToType = "°C";
                                 }
                                 else
                                 {
                                     if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 7
                                         mFormulaNumberSelected =7;
+                                        mToType = "°F";
                                     }
                                     else
                                     {
@@ -154,7 +166,7 @@ public class TemperatureConverter extends AppCompatActivity {
                                         {
                                             //TO RANKIN 8
                                             mFormulaNumberSelected = 8;
-
+                                            mToType ="°Ra";
                                         }
 
 
@@ -166,18 +178,22 @@ public class TemperatureConverter extends AppCompatActivity {
 
                             //**********************************FROM RANKIN*************************************************
                             if (mFromChoice4.getId() == mSelectedFrom){
+                                mFromType = "°Ra";
                                 if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 9
                                     mFormulaNumberSelected = 9;
+                                    mToType = "°C";
                                 }
                                 else
                                 {
                                     if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 10
                                         mFormulaNumberSelected =10;
+                                        mToType = "°F";
                                     }
                                     else
                                     {
                                         if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 11
                                             mFormulaNumberSelected = 11;
+                                            mToType = "K";
                                         }
                                         else
                                         {
@@ -198,12 +214,8 @@ public class TemperatureConverter extends AppCompatActivity {
                             mRoundingInt = (int)(AnotherTempConversion.getOutputTemperature()* 10);                         // ROUND TO THE NEAREST 10TH
                             mRoundedDouble = (double) (mRoundingInt) / 10;
 
-                            mTextView = (TextView) findViewById(R.id.textView4);
-                            mTextView.setText(String.valueOf(mRoundedDouble) + AnotherTempConversion.getOutputData());
-
-
-                            Toast.makeText(TemperatureConverter.this,AnotherTempConversion.getOutputData() , Toast.LENGTH_SHORT).show();
-                            Toast.makeText(TemperatureConverter.this,String.valueOf(mRoundedDouble) , Toast.LENGTH_SHORT).show();
+                              mTextView = (TextView) findViewById(R.id.textView4);
+                              mTextView.setText(String.valueOf(temperature) + mFromType + " = " + String.valueOf(mRoundedDouble) + mToType + System.getProperty("line.separator")+ AnotherTempConversion.getOutputData());
 
 
 

@@ -8,7 +8,7 @@
     <string name="radio_button_1_5">Celsius</string>
     <string name="radio_button_2_6">Fahrenheit</string>
     <string name="radio_button_3_7">Kelvin</string>
-    <string name="radio_button_4_8">Rankin</string>
+    <string name="radio_button_4_8">Rankine</string>
     <string name="convert_button">CONVERT</string>
     <string name="answer_formula">Enter a value and select Units to be converted from and to.</string>
     <string name="no_tempature_error_toast">You must enter a temperature first!</string>
