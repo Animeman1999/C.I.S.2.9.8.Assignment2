@@ -82,6 +82,8 @@ public class TemperatureConverter extends AppCompatActivity {
                             if (mFromChoice1.getId() == mSelectedFrom){
                                 mFromType = "°C"; //                        FOR OUTPUT
                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS
+                                   mFormulaNumberSelected = 12;
+                                   mToType = "°C";
                                    Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
                                }
                                 else
@@ -116,6 +118,8 @@ public class TemperatureConverter extends AppCompatActivity {
                                 else
                                 {
                                     if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT
+                                        mFormulaNumberSelected = 12;
+                                        mToType  = "°F";
                                         Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
                                     }
                                     else
@@ -150,6 +154,8 @@ public class TemperatureConverter extends AppCompatActivity {
                                     else
                                     {
                                         if (mToChoice7.getId() == mSelectedTo){// TO KELVIN
+                                            mFormulaNumberSelected = 12;
+                                            mToType  = "K";
                                             Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
                                         }
                                         else
@@ -184,6 +190,8 @@ public class TemperatureConverter extends AppCompatActivity {
                                         }
                                         else
                                         {//TO RANKIN
+                                            mFormulaNumberSelected = 12;
+                                            mToType = "°Ra";
                                             Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
                                         }
                                     }
@@ -201,11 +209,12 @@ public class TemperatureConverter extends AppCompatActivity {
                         } else {
                             //                                                      ERROR MESSAGE WHEN A to TERMPERATURE SCALE HAS NOT BEE SELECTED
                             Toast.makeText(TemperatureConverter.this,R.string.no_to_error_toast, Toast.LENGTH_SHORT).show();
-                        }
+                                                    }
                     }
                     else {
                         //                                                      ERROR MESSAGE WHEN A FROM TERMPERATURE SCALE HAS NOT BEE SELECTED
                         Toast.makeText(TemperatureConverter.this,R.string.no_from_error_toast, Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 else {

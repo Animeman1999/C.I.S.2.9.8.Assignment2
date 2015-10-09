@@ -22,7 +22,8 @@ public class TempConversion {
             "°Ra = K × 1.8",
             "°C = °Ra / 1.8 - 273.15",
             "°F = °Ra - 459.67",
-            " K = °Ra / 1.8"
+            " K = °Ra / 1.8",
+            "No conversion taking place!"
         };
     private String mOutputData;
 
@@ -67,8 +68,11 @@ public class TempConversion {
             case 10:
                 mOutputTemperature = (mInputTemperature -459.67);
                 break;
-            default:
+            case 11:
                 mOutputTemperature = (mInputTemperature / 1.8);
+                break;
+            default:
+                mOutputTemperature = mInputTemperature;
         }
 
         mOutputData = mFormulaString[mFormulaNumb];
