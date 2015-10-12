@@ -28,7 +28,8 @@ The book does not cover how to do work with Radio Buttons. I will talk about it 
 ## Outside Resources Used
 http://www.csgnetwork.com/   for formulas
 http://stackoverflow.com/    for androind/java help
-
+http://java67.blogspot.com/2014/10/how-to-create-and-initialize-two-dimensional-array-java-example.html  help as stated.
+Brandon Rodrigues   Caught that the formulas used by many websites including google and wiki for Rankine to Celsius does not match Celsius to Rankine.
 
 ## Known Problems, Issues, And/Or Errors in the Program
 ugly.

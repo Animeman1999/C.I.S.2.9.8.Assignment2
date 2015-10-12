@@ -20,7 +20,7 @@ public class TempConversion {
             "C = K − 273.15",
             "°F = (K  − 273.15) × 1.8 + 32",
             "°Ra = K × 1.8",
-            "°C = °Ra / 1.8 - 273.15",
+            "°C = °Ra / 1.8 -491.67",
             "°F = °Ra - 459.67",
             " K = °Ra / 1.8",
             "No conversion taking place!"
@@ -35,43 +35,43 @@ public class TempConversion {
 
 
         switch (mFormulaNumb){
-            case 0:
+            case 0://°F = °C × 1.8 + 32
                 mOutputTemperature = mInputTemperature * 1.8 + 32;
                 break;
-            case 1:
+            case 1:// K = °C + 273.15
                 mOutputTemperature = mInputTemperature + 273.15;
                 break;
-            case 2:
+            case 2://Ra = °C × 1.8 + 491.67
                 mOutputTemperature = mInputTemperature * 1.8 + 491.67;
                 break;
-            case 3:
+            case 3://°C = (°F − 32) / 1.8
                 mOutputTemperature = (mInputTemperature - 32) / 1.8;
                 break;
-            case 4:
+            case 4://K = (°F + 459.67) / 1.8
                 mOutputTemperature = (mInputTemperature + 459.67) / 1.8;
                 break;
-            case 5:
+            case 5://Ra = °F + 459.67
                 mOutputTemperature = (mInputTemperature + 459.67);
                 break;
-            case 6:
+            case 6://C = K − 273.15
                 mOutputTemperature = (mInputTemperature - 273.15);
                 break;
-            case 7:
+            case 7://F = (K  − 273.15) × 1.8 + 32
                 mOutputTemperature = (mInputTemperature  - 273.15) * 1.8 + 32;
                 break;
-            case 8:
+            case 8://°Ra = K × 1.8
                 mOutputTemperature = (mInputTemperature *1.8);
                 break;
-            case 9:
-                mOutputTemperature = (mInputTemperature / 1.8 -273.15);
+            case 9://°C = °Ra / 1.8 -491.67
+                mOutputTemperature = (mInputTemperature / 1.8 -491.67);
                 break;
-            case 10:
+            case 10://°F = °Ra - 459.67
                 mOutputTemperature = (mInputTemperature -459.67);
                 break;
-            case 11:
+            case 11:// K = °Ra / 1.8
                 mOutputTemperature = (mInputTemperature / 1.8);
                 break;
-            default:
+            default:// NO CONVERSION
                 mOutputTemperature = mInputTemperature;
         }
 
