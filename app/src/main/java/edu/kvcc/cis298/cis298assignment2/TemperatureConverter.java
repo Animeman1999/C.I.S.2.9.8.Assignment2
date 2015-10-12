@@ -17,21 +17,11 @@ public class TemperatureConverter extends AppCompatActivity {
 
     private Button mConvertButton;
 
-    private RadioButton mFromChoice1;  // RADIO BUTTONS IN THE FROM GROUP
-    private RadioButton mFromChoice2;
-    private RadioButton mFromChoice3;
-    private RadioButton mFromChoice4;
-
-    private RadioButton mToChoice5;  // RADIO BUTTONS IN THE TO GROUP
-    private RadioButton mToChoice6;
-    private RadioButton mToChoice7;
-    private RadioButton mToChoice8;
-
     private RadioGroup mFromGroup;
     private RadioGroup mToGroup;
 
-    private static final String KEY_INDEX ="index";/////////////////////
-    private int mCurrentIndex;
+//    private static final String KEY_INDEX ="index";/////////////////////
+//    private int mCurrentIndex;
 
     private int [] [] mFindFormula = {
             {12, 0, 1, 2},
@@ -44,21 +34,8 @@ public class TemperatureConverter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature_converter);
 
-
-
         mFromGroup = (RadioGroup) findViewById(R.id.radioGroup);
         mToGroup = (RadioGroup)findViewById(R.id.radioGroup2);
-
-
-        mFromChoice1 = (RadioButton) findViewById(R.id.radioButton);
-        mFromChoice2 = (RadioButton) findViewById(R.id.radioButton2);
-        mFromChoice3 = (RadioButton) findViewById(R.id.radioButton3);
-        mFromChoice4 = (RadioButton) findViewById(R.id.radioButton4);
-
-        mToChoice5 = (RadioButton) findViewById(R.id.radioButton5);
-        mToChoice6 = (RadioButton) findViewById(R.id.radioButton6);
-        mToChoice7 = (RadioButton) findViewById(R.id.radioButton7);
-        mToChoice8 = (RadioButton) findViewById(R.id.radioButton8);
 
         mConvertButton = (Button) findViewById(R.id.convertButton);
 
@@ -68,7 +45,6 @@ public class TemperatureConverter extends AppCompatActivity {
 
                 String tempatureString = ((EditText) findViewById(R.id.editText)).getText().toString();
                 int mFormulaNumberSelected = 0;
-                String testString;
                 double temperature;
                 int mRoundingInt;
                 double mRoundedDouble;
@@ -79,13 +55,15 @@ public class TemperatureConverter extends AppCompatActivity {
                 if (tempatureString != null && !tempatureString.isEmpty()){// MAKE SURE THAT A TEMPERATURE HAS BEEN ENTERED
                     temperature = Double.parseDouble(tempatureString);
                     int mSelectedFrom = mFromGroup.getCheckedRadioButtonId();
-                    mSelectedFrom = (Math.abs(mSelectedFrom) % 10);
+
 
                     if (mSelectedFrom > 0){ // MAKE SURE THAT A FROM TEMPERATURE SCALE HAS BEEN SELECTED
+                        mSelectedFrom = (Math.abs(mSelectedFrom) % 10); // NOW THAT WE KNOW A SELECTED FROM RADIO BUTTON HAS BEEN CHECKED FIND IT LAST DIGIT
                         int mSelectedTo = mToGroup.getCheckedRadioButtonId();
-                        mSelectedTo = (Math.abs(mSelectedTo) % 10);
+
 
                         if (mSelectedTo > 0){ // MAKE SURE THAT A TO TEMPERATURE SCALE HAS BEEN SELECTED
+                            mSelectedTo = (Math.abs(mSelectedTo) % 10);// NOW THAT WE KNOW A SELECTED TO RADIO BUTTON HAS BEEN CHECKED FIND IT LAST DIGIT
 
                             switch (mSelectedFrom){// PLACE "SELECTED FROM TEMPERATURE TYPE" INTO A STRING FOR OUTPUT
                                 case 5:
@@ -117,131 +95,6 @@ public class TemperatureConverter extends AppCompatActivity {
 
                             mFormulaNumberSelected = mFindFormula [(mSelectedFrom - 5)] [(mSelectedTo -1)];  // SELECT WHICH FORMLUA IS USED
 
-
-/*
-                            //**********************************FROM CELCIUS*********************************************
-                            if (mFromChoice1.getId() == mSelectedFrom){
-                                mFromType = "°C"; //                        FOR OUTPUT
-                               if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS
-                                   mFormulaNumberSelected = 12;
-                                   mToType = "°C";
-                                   Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
-                               }
-                                else
-                               {
-                                   if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 0
-                                       mFormulaNumberSelected = 0;
-                                       mToType = "°F";
-                                   }
-                                   else
-                                   {
-                                       if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 1
-                                           mFormulaNumberSelected = 1;
-                                           mToType = "K";
-                                       }
-                                       else
-                                       {//TO RANKIN 2
-                                           mFormulaNumberSelected = 2;
-                                           mToType ="°Ra";
-                                       }
-                                   }
-                               }
-                               }
-                            //********************************END FROM CELCIUS**********************************************
-
-                            //************************************FROM FARHENHEIT*******************************************
-                            if (mFromChoice2.getId() == mSelectedFrom){// FROM FARHENHEIT
-                                mFromType = "°F";
-                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 3
-                                    mFormulaNumberSelected = 3;
-                                    mToType = "°C";
-                                }
-                                else
-                                {
-                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT
-                                        mFormulaNumberSelected = 12;
-                                        mToType  = "°F";
-                                        Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
-                                    }
-                                    else
-                                    {
-                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 4
-                                            mFormulaNumberSelected =4;
-                                            mToType = "K";
-                                        }
-                                        else
-                                        {//TO RANKIN 5
-                                            mFormulaNumberSelected =5;
-                                            mToType ="°Ra";
-                                        }
-                                    }
-                                }
-                            }
-                            //********************************END FROM FARHENHEIT*******************************************
-
-                            //***********************************FROM KELVIN***********************************************
-                            if (mFromChoice3.getId() == mSelectedFrom){
-                                mFromType = "K";
-                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 6
-                                    mFormulaNumberSelected =6;
-                                    mToType = "°C";
-                                }
-                                else
-                                {
-                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 7
-                                        mFormulaNumberSelected =7;
-                                        mToType = "°F";
-                                    }
-                                    else
-                                    {
-                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN
-                                            mFormulaNumberSelected = 12;
-                                            mToType  = "K";
-                                            Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
-                                        }
-                                        else
-                                        {
-                                            //TO RANKIN 8
-                                            mFormulaNumberSelected = 8;
-                                            mToType ="°Ra";
-                                        }
-                                    }
-                                }
-                            }
-                            //********************************END FROM KELVIN***********************************************
-
-                            //**********************************FROM RANKIN*************************************************
-                            if (mFromChoice4.getId() == mSelectedFrom){
-                                mFromType = "°Ra";
-                                if(mToChoice5.getId() == mSelectedTo) { //TO CELCIUS 9
-                                    mFormulaNumberSelected = 9;
-                                    mToType = "°C";
-                                }
-                                else
-                                {
-                                    if(mToChoice6.getId() == mSelectedTo){ //TO FAHRENHEIT 10
-                                        mFormulaNumberSelected =10;
-                                        mToType = "°F";
-                                    }
-                                    else
-                                    {
-                                        if (mToChoice7.getId() == mSelectedTo){// TO KELVIN 11
-                                            mFormulaNumberSelected = 11;
-                                            mToType = "K";
-                                        }
-                                        else
-                                        {//TO RANKIN
-                                            mFormulaNumberSelected = 12;
-                                            mToType = "°Ra";
-                                            Toast.makeText(TemperatureConverter.this,R.string.same_scale_error, Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                            }
-
-                            //********************************END FROM RANKIN*************************************************
- */
-
                             TempConversion AnotherTempConversion= new TempConversion(temperature, mFormulaNumberSelected);  // DO THE CONVERSION
 
                             mRoundingInt = (int)(AnotherTempConversion.getOutputTemperature()* 10);                         // ROUND TO THE NEAREST 10TH
@@ -252,32 +105,27 @@ public class TemperatureConverter extends AppCompatActivity {
                         } else {
                             //                                                      ERROR MESSAGE WHEN A to TERMPERATURE SCALE HAS NOT BEE SELECTED
                             Toast.makeText(TemperatureConverter.this,R.string.no_to_error_toast, Toast.LENGTH_SHORT).show();
-                                                    }
+                        }
                     }
                     else {
                         //                                                      ERROR MESSAGE WHEN A FROM TERMPERATURE SCALE HAS NOT BEE SELECTED
                         Toast.makeText(TemperatureConverter.this,R.string.no_from_error_toast, Toast.LENGTH_SHORT).show();
-
                     }
                 }
                 else {
                     //                                                          ERROR MESSAGE WHEN TEMPERATURE HAS NOT BEEN ENTERED
                     Toast.makeText(TemperatureConverter.this,R.string.no_tempature_error_toast, Toast.LENGTH_SHORT).show();
                 }
-
             }
-
-
         });
 
 
 
-    if (savedInstanceState != null){
+/*    if (savedInstanceState != null){
         mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
     }
-
+*/
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

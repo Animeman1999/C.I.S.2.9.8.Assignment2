@@ -83,15 +83,9 @@ public class TempConversion {
         return mOutputTemperature;
     }
 
-    public void setOutputTemperature(double outputTemperature) {
-        mOutputTemperature = outputTemperature;
-    }
-
     public String getOutputData() {
         return mOutputData;
     }
 
-    public void setOutputData(String outputData) {
-        mOutputData = outputData;
-    }
+
 }
