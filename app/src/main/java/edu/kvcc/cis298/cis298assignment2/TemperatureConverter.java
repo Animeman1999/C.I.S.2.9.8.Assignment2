@@ -20,13 +20,11 @@ public class TemperatureConverter extends AppCompatActivity {
     private RadioGroup mFromGroup;
     private RadioGroup mToGroup;
 
-//    private static final String KEY_INDEX ="index";/////////////////////
-//    private int mCurrentIndex;
 
-    private int [] [] mFindFormula = {
-            {12, 0, 1, 2},
-            {3, 12, 4, 5},
-            {6,7,12,8},
+    private int [] [] mFindFormula = {// ARRAY TO HOLD THE FORMULA NUMBERS, ROWS ARE THE FROM TYPE AND COLUMNS ARE THE TO TYP
+            {12, 0,  1,  2},
+            {3, 12,  4,  5},
+            {6,  7, 12,  8},
             {9, 10, 11, 12}};
 
     @Override
@@ -35,6 +33,7 @@ public class TemperatureConverter extends AppCompatActivity {
         setContentView(R.layout.activity_temperature_converter);
 
         mFromGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
         mToGroup = (RadioGroup)findViewById(R.id.radioGroup2);
 
         mConvertButton = (Button) findViewById(R.id.convertButton);
@@ -44,22 +43,33 @@ public class TemperatureConverter extends AppCompatActivity {
             public void onClick(View view) {
 
                 String tempatureString = ((EditText) findViewById(R.id.editText)).getText().toString();
-                int mFormulaNumberSelected = 0;
-                double temperature;
-                int mRoundingInt;
-                double mRoundedDouble;
+
+                int mFormulaNumberSelected = 0; // WILL HOLD WHICH FORMULUA NUMBER IS TO BE USED IN THE CONVERSION
+
+                double temperature; //             HOLDS THE TEMPERATURE VALUE TO BE CONVERTED
+
+                int mRoundingInt;//                HOLDS VALUE FOR ROUNDING USING INTEGER MATH
+
+                double mRoundedDouble;//           HOLDS ROUNDED VALUE
+
                 TextView mTextView;
-                String mFromType = "-";
-                String mToType = "-";
+
+                String mFromType = "-";//          STRING TO HOLD TEMPERATURE TYPE THAT IS BEING CONVERTED FROM
+
+                String mToType = "-";//          STRING TO HOLD TEMPERATURE TYPE THAT IS BEING CONVERTED TO
 
                 if (tempatureString != null && !tempatureString.isEmpty()){// MAKE SURE THAT A TEMPERATURE HAS BEEN ENTERED
-                    temperature = Double.parseDouble(tempatureString);
-                    int mSelectedFrom = mFromGroup.getCheckedRadioButtonId();
+
+                    temperature = Double.parseDouble(tempatureString);//  NOW THAT THERE IS A NUMBER IN THE FIELD CONVERT IT INTO A DOUBLE
+
+                    int mSelectedFrom = mFromGroup.getCheckedRadioButtonId(); // PASS IN THE ID NUMBER OF RADIO BUTTON THAT HAS BEEN SELECTED OR -1 IF NOT SELECTED.
 
 
                     if (mSelectedFrom > 0){ // MAKE SURE THAT A FROM TEMPERATURE SCALE HAS BEEN SELECTED
+
                         mSelectedFrom = (Math.abs(mSelectedFrom) % 10); // NOW THAT WE KNOW A SELECTED FROM RADIO BUTTON HAS BEEN CHECKED FIND IT LAST DIGIT
-                        int mSelectedTo = mToGroup.getCheckedRadioButtonId();
+
+                        int mSelectedTo = mToGroup.getCheckedRadioButtonId(); // PASS IN THE ID NUMBER OF RADIO BUTTON THAT HAS BEEN SELECTED OR -1 IF NOT SELECTED.
 
 
                         if (mSelectedTo > 0){ // MAKE SURE THAT A TO TEMPERATURE SCALE HAS BEEN SELECTED
@@ -101,6 +111,9 @@ public class TemperatureConverter extends AppCompatActivity {
                             mRoundedDouble = (double) (mRoundingInt) / 10;
 
                               mTextView = (TextView) findViewById(R.id.textView4);
+
+                              // CONCATINATE THE TEMPERATURE ENTERED WITH THE TYPE OF TEMPERATURE ENTERED WITH EQUAL SIGN WITH CONVERTED TEMPERTATURE WITH THE CONVERTED TEMPERATURE TYPE WITH
+                              // A SECOND LINE THAT HAS THE FORMULA
                               mTextView.setText(String.valueOf(temperature) + mFromType + " = " + String.valueOf(mRoundedDouble) + mToType + System.getProperty("line.separator")+ AnotherTempConversion.getOutputData());
                         } else {
                             //                                                      ERROR MESSAGE WHEN A to TERMPERATURE SCALE HAS NOT BEE SELECTED
@@ -118,13 +131,6 @@ public class TemperatureConverter extends AppCompatActivity {
                 }
             }
         });
-
-
-
-/*    if (savedInstanceState != null){
-        mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
-    }
-*/
     }
 
     @Override

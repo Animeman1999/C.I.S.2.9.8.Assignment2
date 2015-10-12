@@ -6,10 +6,17 @@ import android.widget.Toast;
 /**
  * Created by jmartin5229 on 10/6/2015.
  */
+
+
+
+    // THIS CLASS INPUTS A TEMPERATURE AND A FORMULA NUMBER. THE FORMULA NUMBER SELECTS WHICH TEMPERATURE CONVERSION
+    // FORMULA TO USE TO CONVERT THE TEMPERATURE ENTERED.
 public class TempConversion {
     private double mInputTemperature;
     private double mOutputTemperature;
     private int mFormulaNumb;
+
+    //  THIS ARRAYS HOLDS THE FORMULAS IN STRING FORMAT THAT CORRESPONDS WITH THE ON FORMULAS IN THE CASE/SWITCH
     private String[] mFormulaString = {
             "°F = °C × 1.8 + 32",
             " K = °C + 273.15",
