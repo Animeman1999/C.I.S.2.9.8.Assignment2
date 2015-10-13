@@ -148,5 +148,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
         android:layout_gravity="center"
-        android:freezesText="true"/>
+        />
+        //android:freezesText="true"
 </LinearLayout>

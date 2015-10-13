@@ -10,7 +10,8 @@ import android.widget.Toast;
 
 
     // THIS CLASS INPUTS A TEMPERATURE AND A FORMULA NUMBER. THE FORMULA NUMBER SELECTS WHICH TEMPERATURE CONVERSION
-    // FORMULA TO USE TO CONVERT THE TEMPERATURE ENTERED.
+    // FORMULA TO USE TO CONVERT THE TEMPERATURE ENTERED. THIS CLASS IS LEFT BASIC SO IF THE LAYOUT CHANGES THIS CLASS
+    // WILL STILL WORK.
 public class TempConversion {
     private double mInputTemperature;
     private double mOutputTemperature;
@@ -41,7 +42,7 @@ public class TempConversion {
         mFormulaNumb = formulaNumb;
 
 
-        switch (mFormulaNumb){
+        switch (mFormulaNumb){// mFormulaNumb DETERMINES WHICH FORMULA TO USE
             case 0://°F = °C × 1.8 + 32
                 mOutputTemperature = mInputTemperature * 1.8 + 32;
                 break;
